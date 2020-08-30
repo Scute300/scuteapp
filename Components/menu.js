@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Thumbnail} from "native-base"
+import {Thumbnail, Content} from "native-base"
 import {
   View,
   ScrollView,
@@ -25,7 +25,6 @@ class CustomDrawerContentComponent extends Component {
     }
   }
   componentDidMount(){
-
   }
   
 

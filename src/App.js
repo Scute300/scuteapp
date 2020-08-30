@@ -3,6 +3,7 @@ import {Icon} from 'native-base'
 import {createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
+import io from "socket.io-client";
 
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
@@ -16,6 +17,7 @@ import CustomDrawerContentComponent from '../Components/menu'
 import AuthLoadingScreen from '../pages/AuthLoadingScreen'
 import Newpost from '../pages/newpost'
 import Onepost from '../pages/onepost'
+import Inventario from '../pages/inventario'
 //rutas
 
 const DrawerStack = createDrawerNavigator({
@@ -39,6 +41,18 @@ const DrawerStack = createDrawerNavigator({
         <Icon
         type='FontAwesome5'
         name='user-edit'
+        style={{fontSize:20, color : tintColor}}
+        />),
+    }
+  },
+  Inventario :{
+    screen : Inventario,
+    navigationOptions: {
+      drawerLockMode: 'locked-closed',
+      drawerIcon: ({ tintColor, focused }) => (
+        <Icon
+        type='FontAwesome5'
+        name='briefcase'
         style={{fontSize:20, color : tintColor}}
         />),
     }
@@ -97,6 +111,10 @@ const Aplicacion = createAppContainer(
     }
   )
 ); export default class Myapp extends React.Component {
+  constructor(props){
+    super(props)
+    this.socket = io('https://scutebackend.herokuapp.com')
+  }
   render() {
     return (
       <Provider store={createStore(reducers)}>

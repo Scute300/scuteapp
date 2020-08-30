@@ -50,6 +50,7 @@ getposts = async() =>{
       return(
         <Container style={{flex : 1}}>
           <Navbar
+          userdata={this.props.userdata}
           navigation={this.props.navigation}/>
             {this.ischargeposts(this.state.posts)}
           <Footer style={{backgroundColor: '#23d160'}}>
@@ -59,7 +60,7 @@ getposts = async() =>{
       )
   }
   ischargeposts(posts){
-    if(posts !== null){
+    if(posts.length !== 0){
       return <Postbox 
               posts={posts}
               navigation={this.props.navigation}
@@ -69,6 +70,8 @@ getposts = async() =>{
               onepost={false}
               replies={null}
               />
+    } else {
+      return <Content/>
     }
   }
   islogged (isonline){
@@ -94,6 +97,22 @@ getposts = async() =>{
           }
         </FooterTab>
         )
+    } else {
+      return (
+        <FooterTab style={{backgroundColor : "#23d160"}}>
+          { this.state.loadmore == false
+          ?
+          <Button
+          style={{backgroundColor : "transparent"}}>
+          </Button>
+          :
+          <Button
+          style={{backgroundColor : "#23d160"}}>
+            <Spinner color={'green'}/>
+          </Button>
+          }
+        </FooterTab>
+      )
     }
   }
 }

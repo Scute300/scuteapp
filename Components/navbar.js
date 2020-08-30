@@ -73,8 +73,5 @@ class Navbar extends Component {
     }
   
   }
-  const mapStateToProps = state => {
-    return {userdata : state.userdata}
-  }
-  export default connect(mapStateToProps, actions)(Navbar)
+  export default connect( null, actions)(Navbar)
 

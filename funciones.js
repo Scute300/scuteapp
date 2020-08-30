@@ -248,7 +248,19 @@ const comentar = async(id, comentario)=> {
 
 }
 
+const obtenermonedero = async() =>{
+    const token = await AsyncStorage.getItem('scute-user-token')
+    await axios.get('https://scutebackend.herokuapp.com/tienda/monedero'
+    ,  {headers: {Authorization: `Bearer ${token}`}, timeout:60000})
+    .then(response => {
+        console.log('hola mundo')
+    }).catch(error =>{
+        console.log(error)
+    })
+}
+
+//funciones de monedero
 export default {register,login,userdata,yo,
     token,profilepicturepreview,guardaravatar,
     guardardatos, Toastmessage, newpost, getallposts,
-    getonepost, comentar, getreplies}
+    getonepost, comentar, getreplies, obtenermonedero}
